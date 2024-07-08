@@ -9,7 +9,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/ajax", (req, res) => {
-  res.end("<h1> Response from express server </h1>");
+  setTimeout(() => {
+    res.end("<h1> Response from express server </h1>");
+  }, 3000);
 });
 
 app.listen(3000, () => console.log("Server is running ...."));

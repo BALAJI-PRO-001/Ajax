@@ -4,24 +4,23 @@
   </head>
   <body>
     <div id="container"></div>
-    <button id="button">Make Ajax Request</button>
-
+    <button id="button">Load User Records</button>
+    
     <script>
       const container = document.getElementById("container");
       const button = document.getElementById("button");
-      
-      button.onclick = makeRequest;
 
-      function makeRequest() {
+      button.onclick = () => {
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-            container.innerHTML = this.responseText;
+            container.innerText = this.responseText;
           }
         }
-        xhttp.open("GET", "/ajax", true);
+        xhttp.open("GET", "/users", true);
         xhttp.send();
       }
+
     </script>
   </body>
 </html>

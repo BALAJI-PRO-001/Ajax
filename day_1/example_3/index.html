@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container"></div>
+    <button id="btn-1">Make Request</button>
+    <button id="btn-2">Abort Request</button>
+    
+    <script>
+      const container = document.getElementById("container");
+      const makeRequestBTN = document.getElementById("btn-1");
+      const abortRequestBTN = document.getElementById("btn-2");
+
+      const xhttp = new XMLHttpRequest();
+
+      makeRequestBTN.onclick = () => {
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            container.innerHTML = this.responseText;
+            console.log(this.getAllResponseHeaders());
+            console.log(this.getResponseHeader("content-length"));
+            console.log(this.status);
+            console.log(this.statusText);
+          }
+        }
+        xhttp.open("GET", "/ajax", true);
+        xhttp.send();
+      }
+
+      abortRequestBTN.onclick = function() {
+        xhttp.abort();
+        container.innerHTML = "<h1> Request abort </h1>"
+      }
+
+    </script>
+  </body>
+</html>
