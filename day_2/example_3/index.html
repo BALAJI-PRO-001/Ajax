@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" placeholder="Name . . . ."> <br><br>
+    <input type="password" placeholder="Password . . . ."> <br><br>
+    <button id="button">Submit</button>
+
+    <script>
+      const inputElements = document.getElementsByTagName("input");
+      const button = document.getElementById("button");
+      
+      button.onclick = function() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.body.innerHTML = this.responseText;
+          }
+        }
+        const url = `/data?name=${inputElements[0].value}&password=${inputElements[1].value}`
+        xhttp.open("POST", url, true);
+        xhttp.send();
+      }
+    </script>
+  </body>
+</html>
